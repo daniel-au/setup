@@ -88,6 +88,10 @@ school() {
 	cd ~/Spring\ 2016
 }
 
+summer() {
+  cd ~/Summer/cs61a
+}
+
 myapp() {
     cd ~/Desktop/myapp
 }
