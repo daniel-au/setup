@@ -15,6 +15,9 @@ set autoindent
 
 set scrolloff=5
 
+"highlight matches wehen searching
+set hlsearch
+
 filetype plugin indent on "enables plugin indent based on filetype
 
 syntax enable "enables syntax highlighting
