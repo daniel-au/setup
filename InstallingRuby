@@ -1,0 +1,28 @@
+Guide to Installing Ruby & Rails from fresh install
+
+1. install the the latest version of homebrew
+    > brew update # if already installed
+2. install ruby-install
+    > brew install ruby-install --HEAD
+3. check if ruby-install was successfully installed
+    > ruby-install -V
+    # should return the version
+4. find latest stable versions of ruby
+    > ruby-install
+5. install ruby version
+    > ruby-install ruby 2.3.1 # installs ruby 2.3.1
+6. install chruby
+    > brew install chruby
+7. allow chruby commands to be run command line
+   add the following line without quotes to .bashrc file  
+   'source /usr/local/opt/chruby/share/chruby/chruby.sh'
+8. restart terminal
+
+For auto-switching versions of ruby when changing into different projects,
+add 'source /usr/local/share/chruby/chruby.sh' and
+add 'source /usr/local/share/chruby/auto.sh' to .bashrc file.
+
+In every directory, create a file called .ruby-version with the ruby
+version as the text.
+
+https://gistlog.co/daqo/db4de42c9dea0a7d2a03
