@@ -18,14 +18,15 @@ set scrolloff=5
 "highlight matches wehen searching
 set hlsearch
 
-filetype plugin indent on "enables plugin indent based on filetype
+"enables plugin indent based on filetype
+filetype plugin indent on
 
-syntax enable "enables syntax highlighting
+"enables syntax highlighting
+syntax enable
 
 set background=dark
 
 "load indentation rules and plugins according to filetype detected
-
 if has("autocmd")
   filetype plugin indent on
 endif
@@ -35,6 +36,10 @@ set showmatch
 
 "enable mouse usage cuz I'm a noob
 set mouse=a
+
+"open new split panes to the right and bottom
+set splitbelow
+set splitright
 
 "call plug#begin('~/.vim/bundle/')
 "Plug 'tpope/vim-rails', { 'for' : 'ruby' }
