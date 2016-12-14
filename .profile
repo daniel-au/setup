@@ -145,6 +145,10 @@ del() {
 	rm "$1".aux "$1".log "$1".dvi "$1".pdf "$1".toc "$1".out
 }
 
+slack() {
+  open -a Slack.app
+}
+
 # Setting PATH for Python 3.4
 # The orginal version is saved in .profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
