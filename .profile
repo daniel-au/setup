@@ -1,8 +1,4 @@
 export PATH=/Applications:Applications/Microsoft_Office_2011:$PATH
-rail() {
-    cd ~/Rails
-}
-
 rc() {
 	vim ~/.vimrc
 }
@@ -12,7 +8,7 @@ rp() {
 }
 
 profile() {
-	vim ~/../batman/.profile
+	vim ~/.profile
 }
 
 excel() {
@@ -88,24 +84,6 @@ school() {
 	cd ~/Spring\ 2016
 }
 
-summer() {
-  cd ~/Summer/cs61a
-}
-
-myapp() {
-    cd ~/Desktop/myapp
-}
-
-bs() {
-    school
-    cd Side\ Projects/Latex/bullshit
-}
-
-Latex() {
-	school
-	cd Side\ Projects/Latex
-}
-
 ee20() {
 	school
 	cd EE120/EE20/Textbook
@@ -119,10 +97,6 @@ cs170() {
 psych() {
     school
     cd Psych/Exams
-}
-
-tt() {
-	cd ~/Desktop/TT\ Website/calthetatau
 }
 
 pdf() {
