@@ -1,0 +1,5 @@
+[user]
+	name = Daniel Au
+	email = audaniel94@gmail.com
+[core]
+	excludesfile = ~/.gitignore
