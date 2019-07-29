@@ -1,13 +1,13 @@
 " Daniel Au's Vim Configuration File
-
 " Basics
 colorscheme darkblue         " colorscheme meant for black background
 set background=dark          " black background
 set nocompatible             " use Vim defaults
 set backspace=2              " delete over everything, should be in default settings
 set expandtab                " tabs become spaces
-set tabstop=4                " tabs are equivalent of 4 spaces
-set shiftwidth=4             " using the > and < operators to shift indentation
+set tabstop=2                " tabs are equivalent of 2 spaces
+set softtabstop=2
+set shiftwidth=2             " using the > and < operators to shift indentation
 set number                   " show line number
 set ruler                    " display the ruler (shows line and column)
 set autoindent               " newline start with same indentation as previous line
@@ -17,6 +17,10 @@ set ignorecase               " case insensitive searching
 set splitbelow               " open horizontal split panes below
 set splitright               " open vertical split pane to the right
 set showmatch                " show matching brackets and curly braces
+set textwidth=80             " textwidth is 80 columns
+set tabpagemax=100           " max 100 tabs per window
+set autoread                 " updates upon changes to files
+set noerrorbells             " disable beeping and flashing
 
 " Lower priority filetypes when doing tab completion for filenames.
 " Files I don't normally edit.
@@ -27,6 +31,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 " set foldmethod=manual        " folds, another options is folding by indent
 " set softtabstop=2
 " set mouse=a                  " enable mouse usage
+" set wrap
 "enables plugin indent based on filetype
 filetype plugin indent on
 
