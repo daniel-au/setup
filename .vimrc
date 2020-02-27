@@ -1,7 +1,8 @@
 " Daniel Au's Vim Configuration File
 " Basics
-colorscheme darkblue         " colorscheme meant for black background
 set background=dark          " black background
+colorscheme onehalfdark      " colorscheme that matches that of Atom
+set t_Co=256                 " true colors - needed for colorscheme
 set nocompatible             " use Vim defaults
 set backspace=2              " delete over everything, should be in default settings
 set expandtab                " tabs become spaces
@@ -18,6 +19,7 @@ set splitbelow               " open horizontal split panes below
 set splitright               " open vertical split pane to the right
 set showmatch                " show matching brackets and curly braces
 set textwidth=80             " textwidth is 80 columns
+set colorcolumn=+1           " Vertical bar shows end of line width
 set tabpagemax=100           " max 100 tabs per window
 set autoread                 " updates upon changes to files
 set noerrorbells             " disable beeping and flashing
