@@ -9,7 +9,7 @@ set expandtab                " tabs become spaces
 set tabstop=2                " tabs are equivalent of 2 spaces
 set softtabstop=2
 set shiftwidth=2             " using the > and < operators to shift indentation
-set number                   " show line number
+set number relativenumber    " show line number on cursor and relative line numbers otherwise
 set ruler                    " display the ruler (shows line and column)
 set autoindent               " newline start with same indentation as previous line
 set scrolloff=5              " cursor stays this many lines from top and bottom of screen
@@ -18,7 +18,7 @@ set ignorecase               " case insensitive searching
 set splitbelow               " open horizontal split panes below
 set splitright               " open vertical split pane to the right
 set showmatch                " show matching brackets and curly braces
-set textwidth=80             " textwidth is 80 columns
+set textwidth=99             " textwidth is 99 columns
 set colorcolumn=+1           " Vertical bar shows end of line width
 set tabpagemax=100           " max 100 tabs per window
 set autoread                 " updates upon changes to files
