@@ -3,3 +3,7 @@
 	email = audaniel94@gmail.com
 [core]
 	excludesfile = ~/.gitignore
+[submodule]
+  recurse = true
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
