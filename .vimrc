@@ -1,26 +1,42 @@
 " Daniel Au's Vim Configuration File
 " Basics
-set background=dark          " black background
+
+" How it looks
 colorscheme onehalfdark      " colorscheme that matches that of Atom
+set background=dark          " black background
 set t_Co=256                 " true colors - needed for colorscheme
+
+" tbh idk what this does
 set nocompatible             " use Vim defaults
+
+" Tabs and indentation - spaces are better than tabs
+set autoindent               " newline start with same indentation as previous line
 set backspace=2              " delete over everything, should be in default settings
 set expandtab                " tabs become spaces
-set tabstop=2                " tabs are equivalent of 2 spaces
-set softtabstop=2
 set shiftwidth=2             " using the > and < operators to shift indentation
+set softtabstop=2
+set tabstop=2                " tabs are equivalent of 2 spaces
+
+" Cursor lines
 set number relativenumber    " show line number on cursor and relative line numbers otherwise
 set ruler                    " display the ruler (shows line and column)
-set autoindent               " newline start with same indentation as previous line
 set scrolloff=5              " cursor stays this many lines from top and bottom of screen
+
+" Searching
 set hlsearch                 " highlight matches wehen searching
 set ignorecase               " case insensitive searching
+set showmatch                " show matching brackets and curly braces
+
+" Tabs and Panes
 set splitbelow               " open horizontal split panes below
 set splitright               " open vertical split pane to the right
-set showmatch                " show matching brackets and curly braces
+set tabpagemax=100           " max 100 tabs per window
+
+" Width
 set textwidth=99             " textwidth is 99 columns
 set colorcolumn=+1           " Vertical bar shows end of line width
-set tabpagemax=100           " max 100 tabs per window
+
+" Other?
 set autoread                 " updates upon changes to files
 set noerrorbells             " disable beeping and flashing
 
