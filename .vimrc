@@ -26,6 +26,9 @@ set scrolloff=5              " cursor stays this many lines from top and bottom 
 set hlsearch                 " highlight matches wehen searching
 set ignorecase               " case insensitive searching
 set showmatch                " show matching brackets and curly braces
+" cursor search doesn't jump to the next occurrence
+noremap * *``
+noremap # #``
 
 " Tabs and Panes
 set splitbelow               " open horizontal split panes below
