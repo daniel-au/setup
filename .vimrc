@@ -70,3 +70,7 @@ endif
 "Plug 'tpope/vim-rails', { 'for' : 'ruby' }
 "call plug#end()
 "filetype plugin indent on
+
+
+" Pathogen package management
+execute pathogen#infect()
