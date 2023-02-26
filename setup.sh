@@ -16,6 +16,19 @@ function is_installed() {
     return $status
 }
 
+# this is meant for github setup
+# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+function setup_private_key() {
+    ALGORITHM="ed25519"
+    echo -n "What is your github email? "
+    read email
+    ssh-keygen -t $ALGORITHM -C $email
+    eval "$(ssh-agent -s)"
+    touch ~/.ssh/config
+    echo -e "Host github.com\n  AddKeysToAgent yes\n  IdentityFile ~/.ssh/id_$ALGORITHM" >> ~/.ssh/config
+    ssh-add --apple-use-keychain ~/.ssh/id_$ALGORITHM
+}
+
 function install_homebrew() {
     is_installed brew
     status=$?
@@ -59,6 +72,7 @@ function install_slack() {
 }
 
 set_bash
+setup_rsa_key
 install_homebrew
 install_iterm
 install_karabiner
