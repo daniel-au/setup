@@ -16,6 +16,28 @@ function is_installed() {
     return $status
 }
 
+function _add_dock_item() {
+    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+}
+
+# setup the dock https://developer.apple.com/documentation/devicemanagement/dock
+function setup_dock() {
+    defaults write com.apple.dock autohide true
+    defaults write com.apple.dock orientation bottom
+    defaults write com.apple.dock show-recents false
+    # set the items in the dock
+    defaults write com.apple.dock persistent-apps -array  # clear it first
+    _add_dock_item "/System/Applications/App Store.app"
+    _add_dock_item "/System/Applications/Notes.app"
+    _add_dock_item "/Applications/Google Chrome.app"
+    _add_dock_item "/System/Applications/System Settings.app"
+    _add_dock_item "/Applications/iTerm.app"
+    _add_dock_item "/Applications/Slack.app"
+    _add_dock_item "/Applications/Spotify.app"
+    _add_dock_item "/Applications/WhatsApp.app"
+    killall Dock
+}
+
 # this is meant for github setup
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 function setup_private_key() {
@@ -80,3 +102,4 @@ install_chrome
 install_whatsapp
 install_spotify
 install_slack
+setup_dock
