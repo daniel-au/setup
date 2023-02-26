@@ -19,7 +19,7 @@ function is_installed() {
 function install_homebrew() {
     is_installed brew
     status=$?
-    if ! [ $status ]; then
+    if [ $status -eq 1 ]; then
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> /Users/$USER/.zprofile
       (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> /Users/$USER/.bash_profile
