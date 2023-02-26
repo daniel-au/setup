@@ -16,28 +16,6 @@ function is_installed() {
     return $status
 }
 
-function _add_dock_item() {
-    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-}
-
-# setup the dock https://developer.apple.com/documentation/devicemanagement/dock
-function setup_dock() {
-    defaults write com.apple.dock autohide true
-    defaults write com.apple.dock orientation bottom
-    defaults write com.apple.dock show-recents false
-    # set the items in the dock
-    defaults write com.apple.dock persistent-apps -array  # clear it first
-    _add_dock_item "/System/Applications/App Store.app"
-    _add_dock_item "/System/Applications/Notes.app"
-    _add_dock_item "/Applications/Google Chrome.app"
-    _add_dock_item "/System/Applications/System Settings.app"
-    _add_dock_item "/Applications/iTerm.app"
-    _add_dock_item "/Applications/Slack.app"
-    _add_dock_item "/Applications/Spotify.app"
-    _add_dock_item "/Applications/WhatsApp.app"
-    killall Dock
-}
-
 # this is meant for github setup
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 function setup_private_key() {
@@ -93,6 +71,68 @@ function install_slack() {
     brew install --cask slack
 }
 
+function _add_dock_item() {
+    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+}
+
+# setup the dock https://developer.apple.com/documentation/devicemanagement/dock
+function setup_dock() {
+    defaults write com.apple.dock autohide true
+    defaults write com.apple.dock orientation bottom
+    defaults write com.apple.dock show-recents false
+    # set the items in the dock
+    defaults write com.apple.dock persistent-apps -array  # clear it first
+    _add_dock_item "/System/Applications/App Store.app"
+    _add_dock_item "/System/Applications/Notes.app"
+    _add_dock_item "/Applications/Google Chrome.app"
+    _add_dock_item "/System/Applications/System Settings.app"
+    _add_dock_item "/Applications/iTerm.app"
+    _add_dock_item "/Applications/Slack.app"
+    _add_dock_item "/Applications/Spotify.app"
+    _add_dock_item "/Applications/WhatsApp.app"
+    killall Dock
+}
+
+function setup_trackpad() {
+    # trackpad speed
+    defaults write .GlobalPreferences com.apple.trackpad.scaling -int 3
+
+    # tap to click
+    defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+    # 3 finger drag
+    defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad Dragging -bool true
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+
+    # Swipe between full screen applications
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+
+    # Show Desktop
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
+
+    # idk what this does but it's set
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
+
+    # notifications bar
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+}
+
+function setup_keyboard() {
+    defaults write -g InitialKeyRepeat -int 10  # normal minimum is 15 (225 ms)
+    defaults write -g KeyRepeat -int 1  # normal minimum is 2 (30 ms)
+}
+
+function activate_settings() {
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+}
+
 set_bash
 setup_rsa_key
 install_homebrew
@@ -103,3 +143,6 @@ install_whatsapp
 install_spotify
 install_slack
 setup_dock
+setup_trackpad
+setup_keyboard
+activate_settings
