@@ -128,12 +128,12 @@ function activate_settings() {
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 # This should be called after homebrew is installed since the command line tools are a dependency
 function setup_private_key() {
-    private_key_path="$HOME/.ssh/id_$ALGORITHM"
-    if [ -f "$private_key_path" ]; then
+    ALGORITHM="ed25519"
+    PRIVATE_KEY_PATH="$HOME/.ssh/id_$ALGORITHM"
+    if [ -f "$PRIVATE_KEY_PATH" ]; then
         echo "Private key already exists. Exiting."
         return
     fi
-    ALGORITHM="ed25519"
     echo -n "What is your name? "
     read name
     echo -n "What is your github email? "
