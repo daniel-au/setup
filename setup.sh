@@ -147,6 +147,14 @@ function setup_private_key() {
     git config --global user.email $email
 }
 
+function setup_vim() {
+    ln .vimrc ~/.vimrc
+    mkdir -p ~/.vim/colors
+    ln onehalfdark.vim ~/.vim/colors/onehalfdark.vim
+    # install vim pathogen
+    mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+}
+
 set_bash
 install_homebrew
 install_iterm
@@ -160,3 +168,4 @@ setup_trackpad
 setup_keyboard
 activate_settings
 setup_private_key
+setup_vim
