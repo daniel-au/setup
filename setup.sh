@@ -16,6 +16,20 @@ function is_installed() {
     return $status
 }
 
+# sets bash as the default shell
+function set_bash() {
+    if [ $SHELL != "/bin/bash" ]; then
+        chsh -u $USER -s /bin/bash
+    fi
+}
+
+function setup_bash() {
+    ln .bash_profile $HOME/.bash_profile
+    ln .bashrc $HOME/.bashrc
+    ln .bash_aliases $HOME/.bash_aliases
+    ln .profile $HOME/.profile
+}
+
 function install_homebrew() {
     is_installed brew
     status=$?
@@ -37,13 +51,6 @@ function install_karabiner() {
 
 function install_chrome() {
     brew install --cask google-chrome
-}
-
-# sets bash as the default shell
-function set_bash() {
-    if [ $SHELL != "/bin/bash" ]; then
-        chsh -u $USER -s /bin/bash
-    fi
 }
 
 function install_spotify() {
@@ -156,6 +163,7 @@ function setup_vim() {
 }
 
 set_bash
+setup_bash
 install_homebrew
 install_iterm
 install_karabiner
