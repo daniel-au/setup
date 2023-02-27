@@ -16,23 +16,6 @@ function is_installed() {
     return $status
 }
 
-# this is meant for github setup
-# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-function setup_private_key() {
-    ALGORITHM="ed25519"
-    echo -n "What is your name? "
-    read name
-    echo -n "What is your github email? "
-    read email
-    ssh-keygen -t $ALGORITHM -C $email
-    eval "$(ssh-agent -s)"
-    touch ~/.ssh/config
-    echo -e "Host github.com\n  AddKeysToAgent yes\n  IdentityFile ~/.ssh/id_$ALGORITHM" >> ~/.ssh/config
-    ssh-add --apple-use-keychain ~/.ssh/id_$ALGORITHM
-    git config --global user.name $name
-    git config --global user.email $email
-}
-
 function install_homebrew() {
     is_installed brew
     status=$?
@@ -141,8 +124,30 @@ function activate_settings() {
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 }
 
+# this is meant for github setup
+# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+# This should be called after homebrew is installed since the command line tools are a dependency
+function setup_private_key() {
+    private_key_path="$HOME/.ssh/id_$ALGORITHM"
+    if [ -f "$private_key_path" ]; then
+        echo "Private key already exists. Exiting."
+        return
+    fi
+    ALGORITHM="ed25519"
+    echo -n "What is your name? "
+    read name
+    echo -n "What is your github email? "
+    read email
+    ssh-keygen -t $ALGORITHM -C $email
+    eval "$(ssh-agent -s)"
+    touch ~/.ssh/config
+    echo -e "Host github.com\n  AddKeysToAgent yes\n  IdentityFile ~/.ssh/id_$ALGORITHM" >> ~/.ssh/config
+    ssh-add --apple-use-keychain ~/.ssh/id_$ALGORITHM
+    git config --global user.name $name
+    git config --global user.email $email
+}
+
 set_bash
-setup_private_key
 install_homebrew
 install_iterm
 install_karabiner
@@ -154,3 +159,4 @@ setup_dock
 setup_trackpad
 setup_keyboard
 activate_settings
+setup_private_key
