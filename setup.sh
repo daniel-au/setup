@@ -20,6 +20,8 @@ function is_installed() {
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 function setup_private_key() {
     ALGORITHM="ed25519"
+    echo -n "What is your name? "
+    read name
     echo -n "What is your github email? "
     read email
     ssh-keygen -t $ALGORITHM -C $email
@@ -27,6 +29,8 @@ function setup_private_key() {
     touch ~/.ssh/config
     echo -e "Host github.com\n  AddKeysToAgent yes\n  IdentityFile ~/.ssh/id_$ALGORITHM" >> ~/.ssh/config
     ssh-add --apple-use-keychain ~/.ssh/id_$ALGORITHM
+    git config --global user.name $name
+    git config --global user.email $email
 }
 
 function install_homebrew() {
@@ -77,19 +81,19 @@ function _add_dock_item() {
 
 # setup the dock https://developer.apple.com/documentation/devicemanagement/dock
 function setup_dock() {
-    defaults write com.apple.dock autohide true
+    defaults write com.apple.dock autohide -bool true
     defaults write com.apple.dock orientation bottom
-    defaults write com.apple.dock show-recents false
+    defaults write com.apple.dock show-recents -bool false
     # set the items in the dock
     defaults write com.apple.dock persistent-apps -array  # clear it first
     _add_dock_item "/System/Applications/App Store.app"
     _add_dock_item "/System/Applications/Notes.app"
     _add_dock_item "/Applications/Google Chrome.app"
-    _add_dock_item "/System/Applications/System Settings.app"
     _add_dock_item "/Applications/iTerm.app"
     _add_dock_item "/Applications/Slack.app"
     _add_dock_item "/Applications/Spotify.app"
     _add_dock_item "/Applications/WhatsApp.app"
+    _add_dock_item "/System/Applications/System Settings.app"
     killall Dock
 }
 
@@ -119,6 +123,10 @@ function setup_trackpad() {
     defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
     defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
 
+    # App Expose
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+    defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+
     # notifications bar
     defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
     defaults write com.apple.driver.AppleBluetoothMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
@@ -134,7 +142,7 @@ function activate_settings() {
 }
 
 set_bash
-setup_rsa_key
+setup_private_key
 install_homebrew
 install_iterm
 install_karabiner
