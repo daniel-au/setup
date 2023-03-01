@@ -191,10 +191,16 @@ function install_python() {
     source ~/.bash_profile
 }
 
+function setup_frontend() {
+    brew install nvm
+    # nvm install --lts
+    # corepack enable
+    # corepack prepare yarn@1.22.18 --activate
+}
+
 function setup_dev_env() {
     install_docker
     install_python
-    brew install libpq
-    brew install nvm
+    brew install libpq  # for postgres
+    setup_frontend
 }
-
