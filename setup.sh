@@ -13,7 +13,9 @@ install_chrome
 install_whatsapp
 install_spotify
 install_slack
+install_1password
 setup_computer
 setup_private_key
 setup_vim
+setup_neovim
 setup_dev_env

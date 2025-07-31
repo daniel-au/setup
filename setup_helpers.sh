@@ -63,6 +63,10 @@ function install_slack() {
     brew install --cask slack
 }
 
+function install_1password() {
+    brew install --cask 1password
+}
+
 function _add_dock_item() {
     defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 }
@@ -166,6 +170,10 @@ function setup_private_key() {
     git config --global submodule.recurse true
 }
 
+function setup_neovim() {
+    brew install neovim
+}
+
 function setup_vim() {
     ln .vimrc ~/.vimrc
     mkdir -p ~/.vim/colors
@@ -182,13 +190,17 @@ function install_docker() {
 
 function install_python() {
     brew install pyenv
-    brew install xz  # needed for the lzma library
+    brew install readline xz  # needed for the lzma library
     brew install pyenv-virtualenvwrapper
     git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
     # eval "$(pyenv virtualenv-init -)"
     # echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
     pyenv install $PYTHON_VERSION
     source ~/.bash_profile
+}
+
+function install_rust() {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 function setup_frontend() {
@@ -198,9 +210,15 @@ function setup_frontend() {
     # corepack prepare yarn@1.22.18 --activate
 }
 
+function setup_adobe() {
+    brew install --cask adobe-creative-cloud
+}
+
 function setup_dev_env() {
     install_docker
     install_python
+    install_rust
     brew install libpq  # for postgres
+    brew install gh  # github cli
     setup_frontend
 }
