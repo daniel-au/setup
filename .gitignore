@@ -1,5 +1,14 @@
+# Mac files
 *.DS_Store
+
+# Vim
 *.swp
-*.class
-*.out
+
+# Python
 *.pyc
+
+# Java
+*.class
+
+# C
+*.out
